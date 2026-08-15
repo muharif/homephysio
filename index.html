@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f766e" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Weekly Knee Rehab</title>
+  <style>
+    :root {
+      --bg: #f7faf9;
+      --card: #ffffff;
+      --text: #15312d;
+      --muted: #64748b;
+      --accent: #0f766e;
+      --accent-soft: #dff5f1;
+      --border: #dbe7e4;
+      --danger-soft: #fff1f2;
+      --danger: #be123c;
+      --shadow: 0 8px 30px rgba(15, 118, 110, .08);
+      --radius: 18px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1715;
+        --card: #14211e;
+        --text: #ecfdf8;
+        --muted: #9fb8b1;
+        --accent: #5eead4;
+        --accent-soft: #173d37;
+        --border: #28423c;
+        --danger-soft: #3a1720;
+        --danger: #fda4af;
+        --shadow: none;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, select, input { font: inherit; }
+    button, summary, label { -webkit-tap-highlight-color: transparent; }
+
+    .app {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    header {
+      padding: 28px 4px 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 7vw, 2.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .98rem;
+    }
+
+    .sticky-controls {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px 0 12px;
+      background: linear-gradient(to bottom, var(--bg) 75%, transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    select, .btn {
+      min-height: 48px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+    }
+
+    select {
+      width: 100%;
+      padding: 0 14px;
+    }
+
+    .btn {
+      padding: 0 16px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #062b25;
+      border-color: transparent;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .btn.primary { color: #ffffff; }
+    }
+
+    .day-panel {
+      display: none;
+      animation: fade .18s ease-out;
+    }
+
+    .day-panel.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: .4; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .day-hero {
+      margin-top: 8px;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+    }
+
+    .day-hero h2 {
+      margin: 0 0 4px;
+      font-size: 1.45rem;
+    }
+
+    .day-hero p { margin: 4px 0; }
+    .day-hero .focus { font-weight: 800; }
+
+    .progress-wrap {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .progress {
+      height: 10px;
+      background: rgba(100,116,139,.18);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress > span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width .2s ease;
+    }
+
+    .progress-label {
+      font-size: .9rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .section-title {
+      margin: 24px 4px 10px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 800;
+    }
+
+    .exercise {
+      margin: 10px 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .exercise summary {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      min-height: 64px;
+      padding: 12px 14px;
+    }
+
+    .exercise summary::-webkit-details-marker { display: none; }
+
+    .exercise input[type="checkbox"] {
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--border);
+      border-radius: 9px;
+      background: var(--bg);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .exercise input[type="checkbox"]:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .exercise input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #062b25;
+      font-weight: 900;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .exercise input[type="checkbox"]:checked::after { color: white; }
+    }
+
+    .exercise-name { font-weight: 800; }
+    .exercise-dose { color: var(--muted); font-size: .9rem; }
+    .chev { color: var(--muted); font-size: 1.2rem; }
+
+    .exercise-body {
+      padding: 0 16px 16px 58px;
+      color: var(--muted);
+    }
+
+    .exercise-body p { margin: 4px 0; }
+    .tip { color: var(--text); font-weight: 650; }
+
+    .note-card, .warning-card {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .warning-card {
+      background: var(--danger-soft);
+      border-color: color-mix(in srgb, var(--danger) 28%, var(--border));
+    }
+
+    .warning-card strong { color: var(--danger); }
+
+    .daily-break {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+      padding-left: 18px;
+    }
+
+    .footer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 520px) {
+      .app { padding-left: 12px; padding-right: 12px; }
+      .controls { grid-template-columns: 1fr; }
+      .controls .btn { width: 100%; }
+      .exercise summary { grid-template-columns: 30px 1fr auto; padding: 12px; }
+      .exercise-body { padding-left: 54px; }
+      .footer-actions { grid-template-columns: 1fr; }
+      .sticky-controls { padding-top: max(8px, env(safe-area-inset-top)); }
+    }
+
+    @media (min-width: 700px) {
+      .app { padding-left: 24px; padding-right: 24px; }
+      .exercise:hover { transform: translateY(-1px); }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Weekly Knee Rehab</h1>
+      <p class="subtitle">Glutes • hamstrings • outer hip • knee control</p>
+    </header>
+
+    <div class="sticky-controls">
+      <div class="controls">
+        <select id="daySelect" aria-label="Choose day">
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+          <option value="sunday">Sunday</option>
+        </select>
+        <button class="btn primary" id="todayBtn" type="button">Today</button>
+      </div>
+    </div>
+
+    <div id="panels"></div>
+
+    <section class="note-card">
+      <strong>Daily desk habit</strong>
+      <p>Every 45–60 minutes, stand for 2–3 minutes.</p>
+      <div class="daily-break">
+        <span>• 10–20 steps</span>
+        <span>• 5 hip extensions each side</span>
+        <span>• 5 gentle squats</span>
+        <span>• 5 glute squeezes</span>
+      </div>
+    </section>
+
+    <section class="warning-card">
+      <strong>Stop and get reassessed if you develop:</strong>
+      <p>painful clicking, catching/locking, new swelling, sharp joint-line pain, the knee giving way, or difficulty fully bending/straightening the knee.</p>
+    </section>
+  </main>
+
+<script>
+const program = {
+  monday: {
+    title: 'Monday — Light activation',
+    meta: 'Bike commute + 1000 m swim',
+    focus: '10–15 min • recovery + activation',
+    sections: [
+      ['Glute activation', [
+        ['Glute setting', '2 sets × 10 reps • 10 sec hold', 'Squeeze the glutes strongly without turning it into a quad exercise.'],
+        ['Clamshell', '2 sets × 10 each side', 'Keep the pelvis stacked. Do not roll backward.'],
+        ['Bridge', '2 sets × 8–10 reps • 5–8 sec hold', 'Keep the pelvis level and feel the glutes/hamstrings.']
+      ]],
+      ['Mobility', [
+        ['Hip flexor stretch', '30–45 sec each side', 'Gentle stretch only.'],
+        ['Quadriceps stretch', '30–45 sec each side', 'Keep pelvis neutral.'],
+        ['Hamstring stretch', '30–45 sec each side', 'Do not force the range.'],
+        ['Glute stretch', '30–45 sec each side', 'Relax into the stretch.']
+      ]]
+    ]
+  },
+  tuesday: {
+    title: 'Tuesday — Strength A',
+    meta: 'WFH day',
+    focus: '30–35 min • main strength session',
+    sections: [
+      ['Warm-up', [
+        ['Easy warm-up', '5 min', 'Walk, march in place, or easy cycling.'],
+        ['Hip circles', '10 each direction', 'Smooth, controlled movement.'],
+        ['Bodyweight squat', '10 slow reps', 'Knees track over the feet.'],
+        ['Leg swings', '10 alternating', 'Keep them controlled, not ballistic.']
+      ]],
+      ['Strength', [
+        ['Step-up', '2 sets × 10 each side', 'Use a modest step. Drive through mid-foot/heel and keep the knee from falling inward.'],
+        ['Side step-up', '2 sets × 10 each side', 'Slow control; focus on outer hip/glute medius.'],
+        ['Single-leg bridge', '2 sets × 10 each side', 'Keep the pelvis level. If hamstring cramps, return to two-leg bridges temporarily.'],
+        ['Hamstring curl', '2 sets × 10', 'Use a band, ankle weight, slider, towel, or standing curl.'],
+        ['Clamshell', '2 sets × 10 each side', 'Add a resistance band only when form is excellent.'],
+        ['Glute setting', '2 sets × 10 • 10 sec hold', 'Strong glute contraction, relaxed shoulders and quads.']
+      ]],
+      ['Finish', [
+        ['Hip mobility', '5 min', 'Gentle hip flexor, glute, hamstring and quad mobility.']
+      ]]
+    ]
+  },
+  wednesday: {
+    title: 'Wednesday — Recovery + control',
+    meta: 'Bike commute + 1000 m swim',
+    focus: '10 min • no heavy strengthening',
+    sections: [
+      ['Evening routine', [
+        ['Bridge', '8 reps • 5–8 sec hold', 'Controlled and easy.'],
+        ['Clamshell', '10 each side', 'Pelvis stacked.'],
+        ['Glute setting', '5 reps • 10 sec hold', 'Strong glute squeeze.'],
+        ['Hip mobility', '30–45 sec each stretch', 'Hip flexor, glute, hamstring and quadriceps.']
+      ]]
+    ]
+  },
+  thursday: {
+    title: 'Thursday — Strength B + landing',
+    meta: 'WFH day',
+    focus: '30–40 min • strength + controlled impact',
+    sections: [
+      ['Warm-up', [
+        ['Easy warm-up', '5–7 min', 'Walk, march, or easy cycling.']
+      ]],
+      ['Strength', [
+        ['Step-up', '2 sets × 10 each side', 'Knee tracks in line with the second/third toe.'],
+        ['Side step-up', '2 sets × 10 each side', 'Stay controlled through the whole range.'],
+        ['Reverse lunge', '2 sets × 10 each side', 'Use a comfortable stride and prevent inward knee collapse.'],
+        ['Sumo squat', '2 sets × 10', 'Do not force a very wide stance. Think hips back + glute squeeze.'],
+        ['Hamstring curl', '2 sets × 10', 'Slow return phase.'],
+        ['Single-leg bridge', '2 sets × 10 each side', 'Keep pelvis level.']
+      ]],
+      ['Landing practice', [
+        ['Low step landing', '2 sets × 5', 'Quiet landing → hips back → knee controlled → hold 2 sec. Stop if form deteriorates.'],
+        ['Box jump', '2 sets × 5', 'Only if landing control is excellent and there is no pain, swelling, catching, or painful clicking.']
+      ]]
+    ]
+  },
+  friday: {
+    title: 'Friday — Sport day',
+    meta: 'Bike commute + badminton OR swim',
+    focus: '5–8 min • activation only',
+    sections: [
+      ['Pre-sport activation', [
+        ['Glute setting', '5 reps • 10 sec hold', 'Strong, focused glute contraction.'],
+        ['Clamshell', '10 each side', 'Controlled outer-hip activation.'],
+        ['Bridge', '8 reps', 'Smooth and easy.'],
+        ['Slow step-up', '5 each side', 'Use this as a knee-control primer.']
+      ]],
+      ['Badminton note', [
+        ['Technique check', 'Throughout session', 'If fatigue causes knee control to deteriorate, stop rather than pushing into sloppy movement.']
+      ]]
+    ]
+  },
+  saturday: {
+    title: 'Saturday — Strength C',
+    meta: 'Main home rehab session',
+    focus: '30–40 min • full strength session',
+    sections: [
+      ['Warm-up', [
+        ['Easy warm-up', '5–7 min', 'Walk, march, or easy cycling.']
+      ]],
+      ['Strength', [
+        ['Step-up', '2 sets × 10 each side', 'Control knee alignment.'],
+        ['Side step-up', '2 sets × 10 each side', 'Focus on outer hip.'],
+        ['Reverse lunge', '2 sets × 10 each side', 'Slow and controlled.'],
+        ['Single-leg bridge', '2 sets × 10 each side', 'Keep pelvis level.'],
+        ['Hamstring curl', '2 sets × 10', 'Feel the back of the thigh.'],
+        ['Clamshell', '2 sets × 10 each side', 'Use band only if easy with good form.'],
+        ['Glute setting', '2 sets × 10 • 10 sec hold', 'Strong contraction.']
+      ]],
+      ['Optional landing work', [
+        ['Low step landing', '2 sets × 5', 'Only if Thursday caused no knee reaction.'],
+        ['Box jump', '2 sets × 5', 'Quality over quantity. Stop as soon as technique changes.']
+      ]]
+    ]
+  },
+  sunday: {
+    title: 'Sunday — Recovery',
+    meta: 'No jumping or hard strengthening',
+    focus: '10–15 min • mobility + easy recovery',
+    sections: [
+      ['Mobility', [
+        ['Easy walk', 'Optional', 'Keep it comfortable.'],
+        ['Hip flexor stretch', '30–60 sec each side', 'Gentle stretch.'],
+        ['Glute / piriformis stretch', '30–60 sec each side', 'Relax into it.'],
+        ['Hamstring stretch', '30–60 sec each side', 'No aggressive pulling.'],
+        ['Quadriceps stretch', '30–60 sec each side', 'Gentle range.'],
+        ['Adductor stretch', '30–60 sec each side', 'Keep this gentle; the goal is mobility, not hard strengthening.']
+      ]]
+    ]
+  }
+};
+
+const panels = document.getElementById('panels');
+const daySelect = document.getElementById('daySelect');
+const todayBtn = document.getElementById('todayBtn');
+
+function keyFor(day, sectionIndex, exerciseIndex) {
+  return `rehab:${day}:${sectionIndex}:${exerciseIndex}`;
+}
+
+function renderPanels() {
+  Object.entries(program).forEach(([day, data]) => {
+    const panel = document.createElement('section');
+    panel.className = 'day-panel';
+    panel.id = `panel-${day}`;
+
+    const total = data.sections.reduce((sum, [, items]) => sum + items.length, 0);
+    panel.innerHTML = `
+      <div class="day-hero">
+        <h2>${data.title}</h2>
+        <p>${data.meta}</p>
+        <p class="focus">${data.focus}</p>
+        <div class="progress-wrap">
+          <div class="progress"><span id="bar-${day}"></span></div>
+          <div class="progress-label" id="label-${day}">0/${total}</div>
+        </div>
+      </div>`;
+
+    data.sections.forEach(([sectionName, items], sIndex) => {
+      const title = document.createElement('div');
+      title.className = 'section-title';
+      title.textContent = sectionName;
+      panel.appendChild(title);
+
+      items.forEach(([name, dose, tip], eIndex) => {
+        const details = document.createElement('details');
+        details.className = 'exercise';
+        const storageKey = keyFor(day, sIndex, eIndex);
+        const checked = localStorage.getItem(storageKey) === '1';
+        details.innerHTML = `
+          <summary>
+            <input type="checkbox" ${checked ? 'checked' : ''} aria-label="Mark ${name} complete" />
+            <div>
+              <div class="exercise-name">${name}</div>
+              <div class="exercise-dose">${dose}</div>
+            </div>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="exercise-body">
+            <p class="tip">Technique</p>
+            <p>${tip}</p>
+          </div>`;
+
+        const checkbox = details.querySelector('input');
+        checkbox.addEventListener('click', (event) => event.stopPropagation());
+        checkbox.addEventListener('change', () => {
+          localStorage.setItem(storageKey, checkbox.checked ? '1' : '0');
+          updateProgress(day);
+        });
+        panel.appendChild(details);
+      });
+    });
+
+    const actions = document.createElement('div');
+    actions.className = 'footer-actions';
+    actions.innerHTML = `
+      <button class="btn" type="button" data-action="expand">Expand all</button>
+      <button class="btn" type="button" data-action="reset">Reset this day</button>`;
+    actions.querySelector('[data-action="expand"]').addEventListener('click', (e) => {
+      const exercises = [...panel.querySelectorAll('details.exercise')];
+      const shouldOpen = exercises.some(d => !d.open);
+      exercises.forEach(d => d.open = shouldOpen);
+      e.currentTarget.textContent = shouldOpen ? 'Collapse all' : 'Expand all';
+    });
+    actions.querySelector('[data-action="reset"]').addEventListener('click', () => {
+      data.sections.forEach(([, items], sIndex) => {
+        items.forEach((_, eIndex) => localStorage.removeItem(keyFor(day, sIndex, eIndex)));
+      });
+      panel.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      updateProgress(day);
+    });
+    panel.appendChild(actions);
+    panels.appendChild(panel);
+  });
+}
+
+function updateProgress(day) {
+  const panel = document.getElementById(`panel-${day}`);
+  const boxes = [...panel.querySelectorAll('input[type="checkbox"]')];
+  const complete = boxes.filter(b => b.checked).length;
+  const total = boxes.length;
+  const pct = total ? (complete / total) * 100 : 0;
+  document.getElementById(`bar-${day}`).style.width = `${pct}%`;
+  document.getElementById(`label-${day}`).textContent = `${complete}/${total}`;
+}
+
+function showDay(day) {
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById(`panel-${day}`);
+  if (panel) panel.classList.add('active');
+  daySelect.value = day;
+  localStorage.setItem('rehab:lastDay', day);
+  updateProgress(day);
+}
+
+function todayName() {
+  return ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][new Date().getDay()];
+}
+
+renderPanels();
+Object.keys(program).forEach(updateProgress);
+
+const saved = localStorage.getItem('rehab:lastDay');
+showDay(saved && program[saved] ? saved : todayName());
+
+daySelect.addEventListener('change', () => showDay(daySelect.value));
+todayBtn.addEventListener('click', () => showDay(todayName()));
+</script>
+</body>
+</html>
