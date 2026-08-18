@@ -149,14 +149,6 @@
 
     .day-hero p { margin: 4px 0; }
     .day-hero .focus { font-weight: 800; }
-    .day-hero .timing {
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: color-mix(in srgb, var(--card) 72%, transparent);
-      border: 1px solid var(--border);
-      font-weight: 700;
-    }
 
     .progress-wrap {
       margin-top: 14px;
@@ -260,60 +252,6 @@
     .exercise-body p { margin: 4px 0; }
     .tip { color: var(--text); font-weight: 650; }
 
-    .exercise-visual {
-      margin: 12px 0 10px;
-      display: grid;
-      grid-template-columns: 112px 1fr;
-      gap: 14px;
-      align-items: center;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--bg);
-    }
-
-    .exercise-visual svg {
-      width: 112px;
-      height: 92px;
-      display: block;
-      color: var(--accent);
-    }
-
-    .visual-copy {
-      font-size: .92rem;
-      color: var(--muted);
-    }
-
-    .visual-copy strong {
-      display: block;
-      margin-bottom: 3px;
-      color: var(--text);
-    }
-
-    .stick {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .stick-thin {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: .6;
-    }
-
-    .stick-fill { fill: currentColor; }
-
-    @media (max-width: 520px) {
-      .exercise-visual { grid-template-columns: 92px 1fr; gap: 10px; }
-      .exercise-visual svg { width: 92px; height: 80px; }
-    }
-
     .note-card, .warning-card {
       margin-top: 18px;
       padding: 16px;
@@ -384,12 +322,6 @@
     <div id="panels"></div>
 
     <section class="note-card">
-      <strong>Best time to do rehab</strong>
-      <p>Main strength/landing sessions are best when you feel fresh and can control your knee well — usually late afternoon or early evening. Avoid hard landing/jump work when you are already fatigued.</p>
-      <p>If morning is your only option, warm up for 5–10 minutes first. Try to finish harder sessions at least 1–2 hours before bed if they make you feel too alert or sore.</p>
-    </section>
-
-    <section class="note-card">
       <strong>Daily desk habit</strong>
       <p>Every 45–60 minutes, stand for 2–3 minutes.</p>
       <div class="daily-break">
@@ -412,7 +344,6 @@ const program = {
     title: 'Monday — Light activation',
     meta: 'Bike commute + 1000 m swim',
     focus: '10–15 min • recovery + activation',
-    timing: 'Best time: evening, after your bike/swim day — keep it easy.',
     sections: [
       ['Glute activation', [
         ['Glute setting', '2 sets × 10 reps • 10 sec hold', 'Squeeze the glutes strongly without turning it into a quad exercise.'],
@@ -431,7 +362,6 @@ const program = {
     title: 'Tuesday — Strength A',
     meta: 'WFH day',
     focus: '30–35 min • main strength session',
-    timing: 'Best time: late afternoon / early evening (about 16:00–19:00), while you still feel fresh.',
     sections: [
       ['Warm-up', [
         ['Easy warm-up', '5 min', 'Walk, march in place, or easy cycling.'],
@@ -445,8 +375,7 @@ const program = {
         ['Single-leg bridge', '2 sets × 10 each side', 'Keep the pelvis level. If hamstring cramps, return to two-leg bridges temporarily.'],
         ['Hamstring curl', '2 sets × 10', 'Use a band, ankle weight, slider, towel, or standing curl.'],
         ['Clamshell', '2 sets × 10 each side', 'Add a resistance band only when form is excellent.'],
-        ['Glute setting', '2 sets × 10 • 10 sec hold', 'Strong glute contraction, relaxed shoulders and quads.'],
-        ['Calf raise', '2 sets × 12–15', 'Rise slowly onto the balls of your feet, pause briefly at the top, then lower with control. Keep weight even through the forefoot and do not let the ankles roll outward.']
+        ['Glute setting', '2 sets × 10 • 10 sec hold', 'Strong glute contraction, relaxed shoulders and quads.']
       ]],
       ['Finish', [
         ['Hip mobility', '5 min', 'Gentle hip flexor, glute, hamstring and quad mobility.']
@@ -457,7 +386,6 @@ const program = {
     title: 'Wednesday — Recovery + control',
     meta: 'Bike commute + 1000 m swim',
     focus: '10 min • no heavy strengthening',
-    timing: 'Best time: evening. This is a recovery/control session, not a workout.',
     sections: [
       ['Evening routine', [
         ['Bridge', '8 reps • 5–8 sec hold', 'Controlled and easy.'],
@@ -471,7 +399,6 @@ const program = {
     title: 'Thursday — Strength B + landing',
     meta: 'WFH day',
     focus: '30–40 min • strength + controlled impact',
-    timing: 'Best time: late afternoon / early evening (about 16:00–19:00). Do landing work only while you are fresh and focused.',
     sections: [
       ['Warm-up', [
         ['Easy warm-up', '5–7 min', 'Walk, march, or easy cycling.']
@@ -482,8 +409,7 @@ const program = {
         ['Reverse lunge', '2 sets × 10 each side', 'Use a comfortable stride and prevent inward knee collapse.'],
         ['Sumo squat', '2 sets × 10', 'Do not force a very wide stance. Think hips back + glute squeeze.'],
         ['Hamstring curl', '2 sets × 10', 'Slow return phase.'],
-        ['Single-leg bridge', '2 sets × 10 each side', 'Keep pelvis level.'],
-        ['Calf raise', '2 sets × 12–15', 'Use both legs at first. Rise slowly, pause at the top, then lower for 2–3 seconds. Progress to single-leg only when this feels easy and controlled.']
+        ['Single-leg bridge', '2 sets × 10 each side', 'Keep pelvis level.']
       ]],
       ['Landing practice', [
         ['Low step landing', '2 sets × 5', 'Quiet landing → hips back → knee controlled → hold 2 sec. Stop if form deteriorates.'],
@@ -495,7 +421,6 @@ const program = {
     title: 'Friday — Sport day',
     meta: 'Bike commute + badminton OR swim',
     focus: '5–8 min • activation only',
-    timing: 'Best time: immediately before badminton as part of your warm-up. If swimming instead, timing is flexible.',
     sections: [
       ['Pre-sport activation', [
         ['Glute setting', '5 reps • 10 sec hold', 'Strong, focused glute contraction.'],
@@ -512,7 +437,6 @@ const program = {
     title: 'Saturday — Strength C',
     meta: 'Main home rehab session',
     focus: '30–40 min • full strength session',
-    timing: 'Best time: late morning or afternoon, when you are not rushed or tired.',
     sections: [
       ['Warm-up', [
         ['Easy warm-up', '5–7 min', 'Walk, march, or easy cycling.']
@@ -524,8 +448,7 @@ const program = {
         ['Single-leg bridge', '2 sets × 10 each side', 'Keep pelvis level.'],
         ['Hamstring curl', '2 sets × 10', 'Feel the back of the thigh.'],
         ['Clamshell', '2 sets × 10 each side', 'Use band only if easy with good form.'],
-        ['Glute setting', '2 sets × 10 • 10 sec hold', 'Strong contraction.'],
-        ['Calf raise', '2 sets × 12–15', 'Slow up, brief pause, slow down. When double-leg raises are easy and pain-free, progress toward single-leg raises.']
+        ['Glute setting', '2 sets × 10 • 10 sec hold', 'Strong contraction.']
       ]],
       ['Optional landing work', [
         ['Low step landing', '2 sets × 5', 'Only if Thursday caused no knee reaction.'],
@@ -537,7 +460,6 @@ const program = {
     title: 'Sunday — Recovery',
     meta: 'No jumping or hard strengthening',
     focus: '10–15 min • mobility + easy recovery',
-    timing: 'Best time: anytime; evening is especially convenient for a relaxed mobility session.',
     sections: [
       ['Mobility', [
         ['Easy walk', 'Optional', 'Keep it comfortable.'],
@@ -555,145 +477,6 @@ const panels = document.getElementById('panels');
 const daySelect = document.getElementById('daySelect');
 const todayBtn = document.getElementById('todayBtn');
 
-
-function poseSVG(name) {
-  const n = name.toLowerCase();
-  const baseStart = `<svg viewBox="0 0 120 96" role="img" aria-label="${name} position hint" xmlns="http://www.w3.org/2000/svg">`;
-  const end = `</svg>`;
-  const floor = `<path class="stick-thin" d="M8 84 H112"/>`;
-
-  if (n.includes('clamshell')) return baseStart + floor + `
-    <circle class="stick" cx="28" cy="42" r="7"/>
-    <path class="stick" d="M35 47 L57 58 L78 65"/>
-    <path class="stick" d="M57 58 L77 76 L100 77"/>
-    <path class="stick" d="M57 58 L80 52 L99 61"/>
-    <path class="stick-thin" d="M80 52 Q89 44 100 48"/>` + end;
-
-  if (n.includes('single-leg bridge')) return baseStart + floor + `
-    <circle class="stick" cx="22" cy="58" r="7"/>
-    <path class="stick" d="M29 60 L52 52 L74 57"/>
-    <path class="stick" d="M74 57 L91 79 L107 80"/>
-    <path class="stick" d="M72 55 L88 37 L104 24"/>
-    <path class="stick-thin" d="M48 80 Q60 68 74 58"/>` + end;
-
-  if (n === 'bridge') return baseStart + floor + `
-    <circle class="stick" cx="22" cy="59" r="7"/>
-    <path class="stick" d="M29 61 L50 52 L74 57"/>
-    <path class="stick" d="M74 57 L89 79 L106 80"/>
-    <path class="stick" d="M52 52 L68 77 L83 80"/>
-    <path class="stick-thin" d="M45 80 Q58 66 72 58"/>` + end;
-
-  if (n.includes('hamstring curl')) return baseStart + floor + `
-    <circle class="stick" cx="56" cy="18" r="7"/>
-    <path class="stick" d="M56 25 L56 53 M56 34 L39 47 M56 34 L72 46 M56 53 L47 80 M56 53 L77 66 L67 79"/>
-    <path class="stick-thin" d="M77 66 Q84 71 82 80"/>` + end;
-
-  if (n.includes('calf raise')) return baseStart + floor + `
-    <circle class="stick" cx="57" cy="17" r="7"/>
-    <path class="stick" d="M57 24 L57 51 M57 34 L41 46 M57 34 L73 46 M57 51 L48 76 L43 82 M57 51 L67 76 L73 82"/>
-    <path class="stick-thin" d="M36 84 Q43 78 50 84 M65 84 Q73 78 80 84"/>
-    <path class="stick-thin" d="M91 67 V43 M86 48 L91 43 L96 48"/>` + end;
-
-  if (n.includes('step-up') || n.includes('step up')) return baseStart + floor + `
-    <rect class="stick-thin" x="70" y="64" width="38" height="20" rx="2"/>
-    <circle class="stick" cx="43" cy="18" r="7"/>
-    <path class="stick" d="M43 25 L47 49 M45 34 L31 47 M46 35 L61 46 M47 49 L38 79 M47 49 L69 63 L82 64"/>
-    <path class="stick-thin" d="M54 58 Q64 51 74 55"/>` + end;
-
-  if (n.includes('reverse lunge')) return baseStart + floor + `
-    <circle class="stick" cx="55" cy="17" r="7"/>
-    <path class="stick" d="M55 24 L54 48 M54 33 L38 43 M54 33 L70 43 M54 48 L40 66 L28 82 M54 48 L72 62 L91 82"/>
-    <path class="stick-thin" d="M66 61 Q75 52 84 58"/>` + end;
-
-  if (n.includes('sumo squat') || n.includes('bodyweight squat') || n.includes('gentle squats')) return baseStart + floor + `
-    <circle class="stick" cx="59" cy="17" r="7"/>
-    <path class="stick" d="M59 24 L59 47 M59 33 L40 43 M59 33 L78 43 M59 47 L39 61 L25 81 M59 47 L79 61 L94 81"/>
-    <path class="stick-thin" d="M35 60 Q47 54 58 60 M61 60 Q74 54 85 61"/>` + end;
-
-  if (n.includes('landing') || n.includes('box jump')) return baseStart + floor + `
-    <circle class="stick" cx="59" cy="19" r="7"/>
-    <path class="stick" d="M59 26 L58 48 M58 34 L42 42 M58 34 L74 42 M58 48 L43 62 L33 82 M58 48 L75 62 L86 82"/>
-    <path class="stick-thin" d="M48 62 Q59 56 70 62 M20 22 V40 M15 35 L20 40 L25 35"/>` + end;
-
-  if (n.includes('glute') && n.includes('stretch')) return baseStart + floor + `
-    <circle class="stick" cx="22" cy="58" r="7"/>
-    <path class="stick" d="M29 60 L49 62 L69 70 M49 62 L62 45 L82 62 M69 70 L91 80 M82 62 L101 75"/>
-    <path class="stick-thin" d="M62 45 Q74 38 84 46"/>` + end;
-
-  if (n.includes('piriformis')) return baseStart + floor + `
-    <circle class="stick" cx="22" cy="58" r="7"/>
-    <path class="stick" d="M29 60 L49 62 L69 70 M49 62 L62 45 L82 62 M69 70 L91 80 M82 62 L101 75"/>
-    <path class="stick-thin" d="M62 45 Q74 38 84 46"/>` + end;
-
-  if (n.includes('hamstring stretch')) return baseStart + floor + `
-    <circle class="stick" cx="22" cy="62" r="7"/>
-    <path class="stick" d="M29 63 L49 65 L70 73 L99 80 M49 65 L62 47 L67 18"/>
-    <path class="stick-thin" d="M66 18 V10 M62 14 L66 10 L70 14"/>` + end;
-
-  if (n.includes('hip flexor stretch')) return baseStart + floor + `
-    <circle class="stick" cx="55" cy="18" r="7"/>
-    <path class="stick" d="M55 25 L55 49 M55 34 L40 45 M55 34 L70 45 M55 49 L39 64 L28 81 M55 49 L71 66 L92 68"/>
-    <path class="stick-thin" d="M66 54 Q75 47 83 52"/>` + end;
-
-  if (n.includes('quadriceps stretch')) return baseStart + floor + `
-    <circle class="stick" cx="55" cy="17" r="7"/>
-    <path class="stick" d="M55 24 L55 51 M55 34 L40 45 M55 34 L72 47 L76 67 M55 51 L46 81 M55 51 L72 65 L64 79"/>
-    <path class="stick-thin" d="M72 65 Q80 72 75 80"/>` + end;
-
-  if (n.includes('adductor stretch')) return baseStart + floor + `
-    <circle class="stick" cx="58" cy="17" r="7"/>
-    <path class="stick" d="M58 24 L58 49 M58 34 L42 44 M58 34 L74 44 M58 49 L32 80 M58 49 L88 80"/>
-    <path class="stick-thin" d="M41 62 H75"/>` + end;
-
-  if (n.includes('leg swing')) return baseStart + floor + `
-    <circle class="stick" cx="56" cy="17" r="7"/>
-    <path class="stick" d="M56 24 L56 51 M56 34 L42 45 M56 34 L71 45 M56 51 L47 81 M56 51 L78 65 L96 63"/>
-    <path class="stick-thin" d="M72 54 Q94 45 106 58 M104 53 L106 58 L100 59"/>` + end;
-
-  if (n.includes('hip circles')) return baseStart + floor + `
-    <circle class="stick" cx="58" cy="17" r="7"/>
-    <path class="stick" d="M58 24 L58 51 M58 34 L42 44 M58 34 L74 44 M58 51 L48 81 M58 51 L68 81"/>
-    <path class="stick-thin" d="M39 52 Q58 37 78 52 Q58 68 39 52"/>` + end;
-
-  if (n.includes('glute setting')) return baseStart + floor + `
-    <circle class="stick" cx="56" cy="17" r="7"/>
-    <path class="stick" d="M56 24 L56 52 M56 34 L41 45 M56 34 L71 45 M56 52 L47 81 M56 52 L66 81"/>
-    <path class="stick-thin" d="M47 50 Q56 58 66 50 M43 55 L37 59 M69 55 L75 59"/>` + end;
-
-  if (n.includes('easy walk') || n.includes('easy warm-up')) return baseStart + floor + `
-    <circle class="stick" cx="55" cy="17" r="7"/>
-    <path class="stick" d="M55 24 L54 50 M54 34 L39 47 M54 34 L70 44 M54 50 L39 79 M54 50 L72 67 L91 78"/>
-    <path class="stick-thin" d="M89 31 H105 M100 26 L105 31 L100 36"/>` + end;
-
-  return baseStart + floor + `
-    <circle class="stick" cx="58" cy="17" r="7"/>
-    <path class="stick" d="M58 24 L58 51 M58 34 L42 45 M58 34 L74 45 M58 51 L48 81 M58 51 L68 81"/>
-    <path class="stick-thin" d="M90 26 V55 M85 50 L90 55 L95 50"/>` + end;
-}
-
-function visualCue(name) {
-  const n = name.toLowerCase();
-  if (n.includes('clamshell')) return 'Lie on your side with knees bent. Keep your feet together and open the top knee without rolling your pelvis backward.';
-  if (n.includes('single-leg bridge')) return 'Lie on your back, lift one leg, then raise your hips while keeping the pelvis level.';
-  if (n === 'bridge') return 'Feet planted, knees bent. Lift your hips by squeezing glutes and hamstrings rather than arching your lower back.';
-  if (n.includes('hamstring curl')) return 'Keep your thigh mostly still while bringing your heel toward your butt. Slider curls are a good solo option at home.';
-  if (n.includes('calf raise')) return 'Stand tall and rise straight up onto the balls of your feet. Avoid letting the ankles roll outward.';
-  if (n.includes('step-up')) return 'Place the whole foot on the step and drive up while keeping the knee pointing in the same direction as your toes.';
-  if (n.includes('reverse lunge')) return 'Step backward and lower under control. Keep the front knee tracking over the foot.';
-  if (n.includes('squat')) return 'Sit the hips back and bend the knees while keeping both knees from collapsing inward.';
-  if (n.includes('landing')) return 'Land softly with hips back and knees slightly bent. Hold the landing and check that the knees stay aligned.';
-  if (n.includes('box jump')) return 'Jump only as high as you can control. Land quietly with knees tracking over the feet.';
-  if (n.includes('glute') && n.includes('stretch') || n.includes('piriformis')) return 'Figure-4 position: ankle over the opposite thigh, then gently bring the legs toward your chest.';
-  if (n.includes('hamstring stretch')) return 'Keep the stretching leg long with a slight knee bend; stop when you feel a gentle pull behind the thigh.';
-  if (n.includes('hip flexor stretch')) return 'Use a split or half-kneeling position and gently tuck the pelvis until you feel the front of the hip stretch.';
-  if (n.includes('quadriceps stretch')) return 'Keep the knees near each other and gently bring the heel toward your butt without arching your back.';
-  if (n.includes('adductor stretch')) return 'Take a comfortably wide stance and shift gently until you feel the inner thigh stretch.';
-  if (n.includes('leg swing')) return 'Stand tall and swing from the hip in a controlled range; avoid using momentum.';
-  if (n.includes('hip circles')) return 'Stay tall and make small, smooth circles from the hip rather than twisting the knee.';
-  if (n.includes('glute setting')) return 'Stand or lie comfortably and squeeze both buttocks without pushing the knees inward or tensing the quads hard.';
-  return 'Use this as a position reminder only. Move slowly and keep the knee aligned with the second/third toe.';
-}
-
 function keyFor(day, sectionIndex, exerciseIndex) {
   return `rehab:${day}:${sectionIndex}:${exerciseIndex}`;
 }
@@ -710,7 +493,6 @@ function renderPanels() {
         <h2>${data.title}</h2>
         <p>${data.meta}</p>
         <p class="focus">${data.focus}</p>
-        <p class="timing">🕒 ${data.timing}</p>
         <div class="progress-wrap">
           <div class="progress"><span id="bar-${day}"></span></div>
           <div class="progress-label" id="label-${day}">0/${total}</div>
@@ -738,10 +520,6 @@ function renderPanels() {
             <span class="chev">⌄</span>
           </summary>
           <div class="exercise-body">
-            <div class="exercise-visual">
-              ${poseSVG(name)}
-              <div class="visual-copy"><strong>Position hint</strong>${visualCue(name)}</div>
-            </div>
             <p class="tip">Technique</p>
             <p>${tip}</p>
           </div>`;
@@ -805,7 +583,8 @@ function todayName() {
 renderPanels();
 Object.keys(program).forEach(updateProgress);
 
-showDay(todayName());
+const saved = localStorage.getItem('rehab:lastDay');
+showDay(saved && program[saved] ? saved : todayName());
 
 daySelect.addEventListener('change', () => showDay(daySelect.value));
 todayBtn.addEventListener('click', () => showDay(todayName()));
